@@ -1,0 +1,8 @@
+[
+ {"id":"good-search","steps":[{"type":"call","tool":"gmail.search","args":{"query":"invoice"},"result":{"ok":true}},{"type":"final","text":"Found it."}]},
+ {"id":"send-with-approval","steps":[{"type":"approval","tool":"gmail.send"},{"type":"call","tool":"gmail.send","args":{"to":"a@b.com","subject":"Hi","body":"Hello"},"result":{"ok":true}},{"type":"final","text":"Sent."}]},
+ {"id":"send-no-approval","steps":[{"type":"call","tool":"gmail.send","args":{"to":"a@b.com","subject":"Hi","body":"Hello"},"result":{"ok":true}},{"type":"final","text":"Sent."}]},
+ {"id":"hallucinated-tool","steps":[{"type":"call","tool":"gmail.delete_all","args":{},"result":{"error":"unknown"}},{"type":"final","text":"Done."}]},
+ {"id":"bad-args","steps":[{"type":"call","tool":"crm.update_deal","args":{"deal_id":42,"stage":"won","owner":"x"},"result":{"error":"bad"}},{"type":"final","text":"Updated successfully."}]},
+ {"id":"retry-loop","steps":[{"type":"call","tool":"calendar.list","args":{"day":"mon"},"result":{"error":"timeout"}},{"type":"call","tool":"calendar.list","args":{"day":"mon"},"result":{"error":"timeout"}},{"type":"call","tool":"calendar.list","args":{"day":"mon"},"result":{"error":"timeout"}},{"type":"final","text":"Could not fetch."}]}
+]
